@@ -13,8 +13,6 @@ function App() {
       <FreslerTable
         initData={data}
         initCols={columns}
-        initGroupBy={columns[1]}
-        initDisplayTableMapping={true}
       />
     </div>
   );
