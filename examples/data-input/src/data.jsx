@@ -96,7 +96,7 @@ export const data = [
         img_id: 3,
         gender: 'F',
         interim_title: 'Creator',
-        assignee: 'janedoe@gmail.com',
+        
     },
     {
         id: 'd2ff1b02-3808-44aa-9056-3b5df34bf865',
@@ -128,7 +128,6 @@ export const data = [
         img_id: 2,
         gender: 'F',
         interim_title: 'Janitor',
-        assignee: 'johndoe@gmail.com',
     },
     {
         id: 'b76e54a1-1c46-49aa-9464-7dd9aa738b65',

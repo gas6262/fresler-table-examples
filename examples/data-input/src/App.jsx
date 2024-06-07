@@ -7,53 +7,27 @@ import { FileUploader } from "react-drag-drop-files";
 import { Button } from 'react-bootstrap';
 import { CloudArrowUp, FiletypeCsv } from 'react-bootstrap-icons'; // Importing a Bootstrap icon
 import { FreslerTable } from "@fresler/fresler-table"
+import FileUploadHeader from "./FileUploadHeader.jsx"
 import "@fresler/fresler-table/css"
 
 import { data } from "./data"
-import { columns } from "./columns.jsx"
+import { columns, suggestedColumns } from "./columns.jsx"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [tableData, setTableData] = useState(data)
 
   return (
     <>
-      <div style={{ width: "85vw" }} className='p-3'>
+      <div className='p-3'>
         <div className='row'>
-          <div className='col-12 col-md-6'>
-            <FileUploader
-              style={{ width: "100%" }}
-              label="Drop your contact spreadsheet here."
-              onSelect={(file) => { startFileAdd(file); }}
-              onDrop={(file) => { startFileAdd(file); }}
-              name="file"
-              multiple={true}>
-              <Button
-                style={{ width: "100%" }}
-                color='info'
-                icon='CloudUpload'
-                size="lg"
-                isLight>
-                <CloudArrowUp />{" "}Drop Spreadsheet here
-
-              </Button>
-            </FileUploader>
-          </div>
-          <div className='col-12 col-md-6'>
-            <Button
-              style={{ width: "100%" }}
-              color='success'
-              icon='CloudUpload'
-              size="lg"
-              isLight>
-              <FiletypeCsv />{" "}Download example
-            </Button>
-          </div>
+          <FileUploadHeader setData={setTableData} />
         </div>
         <div className='row mt-3'>
           <FreslerTable
-            initData={data}
+            initData={tableData}
             initCols={columns}
-            
+            optionalCols={suggestedColumns}
+            initDisplayTableMapping={true}
           />
         </div>
       </div>
