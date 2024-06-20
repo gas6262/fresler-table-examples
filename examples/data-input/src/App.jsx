@@ -16,16 +16,21 @@ import { columns, suggestedColumns } from "./columns.jsx"
 function App() {
   const [tableData, setTableData] = useState(data)
 
+  const appendData = (newData) => {
+    setTableData([...tableData, ...newData])
+  }
+
   return (
     <>
       <div className='p-3'>
         <div className='row'>
-          <FileUploadHeader setData={setTableData} />
+          <FileUploadHeader setData={appendData} />
         </div>
         <div className='row mt-3'>
           <FreslerTable
             initData={tableData}
             initCols={columns}
+            updateData={setTableData}
             optionalCols={suggestedColumns}
             initDisplayTableMapping={true}
           />
