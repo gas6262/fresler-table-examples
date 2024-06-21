@@ -5,6 +5,8 @@ import { Button } from 'react-bootstrap';
 import { CloudArrowUp, FiletypeCsv } from 'react-bootstrap-icons'; // Importing a Bootstrap icon
 import { FileUploader } from "react-drag-drop-files";
 import './App.css';
+import * as xlsx from "xlsx";
+
 // import customers from './customers.csv'; // Adjust the path as necessary
 
 function FileUploadHeader({
@@ -26,6 +28,22 @@ function FileUploadHeader({
             })
             .catch(error => console.error('There was a problem with the fetch operation:', error));
     };
+
+    const startFileAdd = (files) => {
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const data = e.target.result;
+            const workbook = xlsx.read(data, { type: "array" });
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            const json = xlsx.utils.sheet_to_json(worksheet);
+
+            setData(json)
+          
+        };
+        reader.readAsArrayBuffer(files[0]);
+    }
 
     return (
         <>
@@ -50,10 +68,10 @@ function FileUploadHeader({
             </div>
             <div className='col-12 col-md-6'>
                 <Button
+                    href="/customers.csv"
                     style={{ width: "100%" }}
                     variant='success'
                     size="lg"
-                    onClick={downloadFile}
                 >
                     <FiletypeCsv />{" "}Download example
                 </Button>
