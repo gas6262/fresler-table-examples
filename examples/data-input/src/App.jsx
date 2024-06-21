@@ -23,6 +23,14 @@ function App() {
   return (
     <>
       <div className='p-3'>
+        <h2>Things To Try</h2>
+        <h3 style={{ textAlign: 'left' }}>
+          1. Download the example csv file <br />
+          2. Make edits and drop the csv file and drop it on the "Drop
+          spreadsheet here" button
+          <br />
+          3. Make addtional edits in the cells of the data table
+        </h3>
         <div className='row'>
           <FileUploadHeader setData={appendData} />
         </div>
